@@ -18,6 +18,11 @@ pipeline {
             }
             steps {
                 script {
+                    echo 'About to build the docker image ${DOCKER_IMAGE_NAME}'
+                    node {
+                        echo 'User:'
+                        sh 'whoami'
+                    }
                     app = docker.build(DOCKER_IMAGE_NAME)
                     app.inside {
                         sh 'echo Hello, World!'
